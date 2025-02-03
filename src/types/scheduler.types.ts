@@ -37,3 +37,21 @@ export interface WeeklyPlanConfig {
   rowCategories?: string[];
   styles?: WeeklyPlanConfigStyles;
 }
+
+export interface TimelineSchedulerProps {
+  config: WeeklyPlanConfig;
+  scrollIntoToday?: boolean;
+  onTaskClick?: (task: ProductionTask) => void;
+  onRowExpand?: (
+    departmentName: string,
+    departmentId: string,
+    task: ProductionTask
+  ) => Promise<void>;
+  onRowShrink?: (
+    departmentName: string,
+    departmentId: string,
+    task: ProductionTask
+  ) => Promise<void>;
+  onRowLabelClick?: (departmentName: string) => void;
+  tooltipComponent?: (task: ProductionTask) => React.ReactNode;
+}

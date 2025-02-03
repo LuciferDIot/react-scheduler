@@ -1,7 +1,11 @@
 import { AnimatePresence } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { TaskColors } from "../../../data";
-import { Coordination, ProductionTask, WeeklyPlanConfig } from "../../../types";
+import {
+  Coordination,
+  ProductionTask,
+  TimelineSchedulerProps,
+} from "../../../types";
 import { generateGroupedTasks } from "../../../util/common.util";
 import { ContextMenu, Tooltip } from "../../atoms";
 import { RightClickUI } from "../../molecules";
@@ -15,28 +19,10 @@ const defaultStyles = {
   daybgColorHighlight: undefined,
 };
 
-export interface WeeklyPlanProps {
-  config: WeeklyPlanConfig;
-  scrollIntoToday?: boolean;
-  onTaskClick?: (task: ProductionTask) => void;
-  onRowExpand?: (
-    departmentName: string,
-    departmentId: string,
-    task: ProductionTask
-  ) => Promise<void>;
-  onRowShrink?: (
-    departmentName: string,
-    departmentId: string,
-    task: ProductionTask
-  ) => Promise<void>;
-  onRowLabelClick?: (departmentName: string) => void;
-  tooltipComponent?: (task: ProductionTask) => React.ReactNode;
-}
-
 const borderColor = "border-gray-200";
 const additionalStickyLeft = 10;
 
-export const WeeklyPlan: React.FC<WeeklyPlanProps> = React.memo(
+export const TimelineScheduler: React.FC<TimelineSchedulerProps> = React.memo(
   ({
     config: {
       topic,
