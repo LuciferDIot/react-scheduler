@@ -1,11 +1,11 @@
-import { TimelineScheduler } from "./src/components/templates";
+import { TimelineScheduler } from "./components/templates";
 import {
   Coordination,
   ProductionTask,
   TableDateRange,
   WeeklyPlanConfig,
   WeeklyPlanConfigStyles,
-} from "./src/types";
+} from "./types";
 
 // Export the types
 export type {
