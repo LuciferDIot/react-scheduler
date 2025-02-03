@@ -3,7 +3,17 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true, // Enables all strict type-checking options
+    "noImplicitAny": true, // Ensures all variables have explicit types
+    "strictNullChecks": true, // Prevents `null` and `undefined` from being assignable to any type
+    "strictPropertyInitialization": true, // Ensures class properties are initialized
+    "noUncheckedIndexedAccess": true, // Adds `undefined` to indexed access types (e.g., `array[0]` or `object['key']`)
+    "noImplicitReturns": true, // Ensures all code paths return a value
+    "noImplicitThis": true, // Prevents using `this` without proper context
+    "alwaysStrict": true, // Ensures strict mode is enabled in all files
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["vite.config.ts"]
 }

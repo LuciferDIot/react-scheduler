@@ -41,6 +41,7 @@ export interface WeeklyPlanConfig {
 export interface TimelineSchedulerProps {
   config: WeeklyPlanConfig;
   scrollIntoToday?: boolean;
+  loading?: boolean;
   onTaskClick?: (task: ProductionTask) => void;
   onRowExpand?: (
     departmentName: string,

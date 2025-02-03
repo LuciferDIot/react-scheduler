@@ -11,10 +11,6 @@ interface HeaderProps {
   topic: string;
   cellWidthPX: number;
   lockOperations: boolean;
-  daybgColor?: {
-    daysHighlight: Date[];
-    daybgColorHighlight: { [key: string]: string };
-  };
   scrollIntoToday?: boolean;
   containerRef: React.RefObject<HTMLDivElement>;
   borderColor: string;
@@ -22,6 +18,9 @@ interface HeaderProps {
     additionalStickyLeft: number;
     labelMaxWidth: number;
     setLabelMaxWidth: React.Dispatch<React.SetStateAction<number>>;
+  };
+  daybgColorHighlight?: {
+    [key: string]: Date[];
   };
   setTooltipVisible: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   lockChange: () => void;
@@ -32,11 +31,11 @@ export const Header: React.FC<HeaderProps> = ({
   topic,
   cellWidthPX,
   lockOperations,
-  daybgColor,
   scrollIntoToday,
   containerRef,
   borderColor,
   labelConfig: { additionalStickyLeft, labelMaxWidth, setLabelMaxWidth },
+  daybgColorHighlight,
   setTooltipVisible,
   lockChange,
 }) => {
@@ -88,6 +87,30 @@ export const Header: React.FC<HeaderProps> = ({
 
   const cellCount = scrollIntoToday ? 2 : 1;
   const [linePosition, setLinePosition] = useState(0);
+
+  const daybgColor = useMemo(() => {
+    if (!daybgColorHighlight) return undefined;
+
+    return {
+      daysHighlight: Object.values(daybgColorHighlight)
+        .flat()
+        .map((date) => new Date(date as string | number | Date))
+        .filter((date) => !isNaN(date.getTime())), // Filter out invalid dates
+      daybgColorHighlight: Object.keys(daybgColorHighlight).reduce(
+        (acc, color) => {
+          daybgColorHighlight?.[color]?.forEach((date) => {
+            const parsedDate = new Date(date);
+            if (!isNaN(parsedDate.getTime())) {
+              // Only process valid dates
+              acc[parsedDate.toISOString().split("T")[0]] = color;
+            }
+          });
+          return acc;
+        },
+        {} as { [key: string]: string }
+      ),
+    };
+  }, [daybgColorHighlight]);
 
   useEffect(() => {
     const updateLinePosition = () => {

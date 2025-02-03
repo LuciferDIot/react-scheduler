@@ -1,4 +1,4 @@
-import { TimelineScheduler } from "./components/templates";
+import { Button, TimelineScheduler } from "./components/templates";
 import {
   Coordination,
   ProductionTask,
@@ -8,6 +8,7 @@ import {
 } from "./types";
 
 // Export the types
+export { Button, TimelineScheduler };
 export type {
   Coordination,
   ProductionTask,
