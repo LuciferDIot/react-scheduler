@@ -1,32 +1,27 @@
-import React from "react";
+import { Component, ErrorInfo } from "react";
 import { ErrorBoundaryProps, ErrorBoundaryState } from "../../../types";
 
-export class ErrorBoundary extends React.Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
-  constructor(props) {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
+  static getDerivedStateFromError(_: Error): ErrorBoundaryState {
+    return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
-    console.error("Error caught in ErrorBoundary:", error, errorInfo);
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("Error caught by boundary:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return (
-        <div className="w-full h-full flex justify-center items-center p-4">
-          {this.state.error?.message || "Something went wrong."}
-        </div>
-      );
+      return <div>Something went wrong.</div>;
     }
 
     return this.props.children;
   }
 }
+
+export { ErrorBoundary };
