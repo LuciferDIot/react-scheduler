@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TimelineScheduler component >  prop working 1`] = `null`;
+
+exports[`TimelineScheduler component > TimelineScheduler component renders correctly 1`] = `null`;

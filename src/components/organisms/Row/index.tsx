@@ -98,16 +98,16 @@ const Row: React.FC<RowProps> = React.memo(
           }
 
           const taskStartIndex = dates.indexOf(
-            task.startDate.toISOString().split("T")[0]
+            task.startDate.toISOString().split("T")[0] || ""
           );
           const taskEndIndex = dates.indexOf(
-            task.endDate.toISOString().split("T")[0]
+            task.endDate.toISOString().split("T")[0] || ""
           );
           let span = taskEndIndex - taskStartIndex + 1;
 
           if (taskEndIndex < taskStartIndex) {
             const endOfRowIndex = dates.indexOf(
-              rowEndDate.toISOString().split("T")[0]
+              rowEndDate.toISOString().split("T")[0] || ""
             );
             span = endOfRowIndex - taskStartIndex + 1;
           }
@@ -147,10 +147,10 @@ const Row: React.FC<RowProps> = React.memo(
         <motion.div
           ref={labelRef}
           className={` z-[2] sticky left-0 min-w-48 p-2 border-x-1 ${borderColor} ${
-            groupedTasks[line].length > 1
+            (groupedTasks[line]?.length ?? 0) > 1
               ? taskRowIndex === 0
                 ? "border-t-[0.1px]"
-                : taskRowIndex === groupedTasks[line].length - 1
+                : taskRowIndex === (groupedTasks[line]?.length ?? 0) - 1
                 ? "border-b-[0.1px]"
                 : "border-y-0"
               : "border"

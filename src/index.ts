@@ -1,21 +1,9 @@
-import { Button, TimelineScheduler } from "./components/templates";
-import {
-  Coordination,
-  ProductionTask,
-  TableDateRange,
-  WeeklyPlanConfig,
-  WeeklyPlanConfigStyles,
-} from "./types";
-
-// Export the types
-export { Button, TimelineScheduler };
+"use client";
+export { Button, TimelineScheduler } from "./components/templates";
 export type {
   Coordination,
   ProductionTask,
   TableDateRange,
   WeeklyPlanConfig,
   WeeklyPlanConfigStyles,
-};
-
-// Export the component
-export default TimelineScheduler;
+} from "./types";

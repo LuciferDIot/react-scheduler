@@ -128,8 +128,8 @@ export const TimelineScheduler: React.FC<TimelineSchedulerProps> = React.memo(
 
       const groupedTasks = useMemo(() => {
         try {
-          const grouped = generateGroupedTasks(schedulerTasks || []);
-          rowCategories.forEach(
+          const grouped = generateGroupedTasks(schedulerTasks);
+          rowCategories?.forEach(
             (category) => !grouped[category] && (grouped[category] = [[]])
           );
           return grouped;
@@ -155,7 +155,7 @@ export const TimelineScheduler: React.FC<TimelineSchedulerProps> = React.memo(
             return date.toISOString().split("T")[0];
           }),
         [days, tableStartDate]
-      );
+      ).filter((date): date is string => date !== undefined);
 
       if (!dates) return;
 
@@ -199,11 +199,11 @@ export const TimelineScheduler: React.FC<TimelineSchedulerProps> = React.memo(
                       setTooltipVisible={setTooltipVisible}
                       lockChange={() => setLockOperations(!lockOperations)}
                     />
-                    {Object.keys(groupedTasks)
+                    {Object.keys(groupedTasks || [])
                       .sort((a, b) => a.localeCompare(b))
                       .map((line) => (
                         <div className="pb-2 bg-white" key={line}>
-                          {groupedTasks[line].map((row, taskRowIndex) => (
+                          {groupedTasks[line]?.map((row, taskRowIndex) => (
                             <Row
                               key={`${line}-${taskRowIndex}`}
                               lockOperations={lockOperations}

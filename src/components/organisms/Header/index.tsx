@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
     }
   }, []);
 
-  const currentDate = new Date().toISOString().split("T")[0];
+  const currentDate: string = new Date().toISOString().split("T")[0] || "";
 
   const handleScrollToCurrentDate = () => {
     if (currentDateRef.current) {
@@ -102,7 +102,10 @@ export const Header: React.FC<HeaderProps> = ({
             const parsedDate = new Date(date);
             if (!isNaN(parsedDate.getTime())) {
               // Only process valid dates
-              acc[parsedDate.toISOString().split("T")[0]] = color;
+              const dateKey = parsedDate.toISOString().split("T")[0];
+              if (dateKey) {
+                acc[dateKey] = color;
+              }
             }
           });
           return acc;

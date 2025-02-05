@@ -152,7 +152,7 @@ export const Task: React.FC<TaskProps> = React.memo(
           <TaskContent
             task={task}
             percentage={percentage}
-            taskBackgroundColor={taskBackgroundColor}
+            taskBackgroundColor={taskBackgroundColor || ""}
             lockOperations={lockOperations}
             cellWidthPX={cellWidthPX}
             textStickyLeftPX={textStickyLeftPX}

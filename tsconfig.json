@@ -14,9 +14,24 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["./dist/index.d.ts", "node_modules/@types"]
+    "typeRoots": ["node_modules/@types", "./dist/index.d.ts"],
+
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true, // Enables all strict type-checking options
+    "noImplicitAny": true, // Ensures all variables have explicit types
+    "strictNullChecks": true, // Prevents `null` and `undefined` from being assignable to any type
+    "strictFunctionTypes": true, // Ensures functions have explicit return types
+    "strictBindCallApply": true, // Ensures `bind`, `call`, and `apply` methods are called with the correct arguments
+    "strictBuiltinIteratorReturn": true, // Ensures that the return type of the Symbol.iterator method is compatible with the type of the object
+    "strictPropertyInitialization": true, // Ensures class properties are initialized
+    "noUncheckedIndexedAccess": true, // Adds `undefined` to indexed access types (e.g., `array[0]` or `object['key']`)
+    "noImplicitReturns": true, // Ensures all code paths return a value
+    "noImplicitThis": true, // Prevents using `this` without proper context
+    "alwaysStrict": true, // Ensures strict mode is enabled in all files
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "./index.ts"],
-  "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["vite.config.ts", "src", "./index.ts"],
+  "exclude": ["node_modules", "dist"]
 }
